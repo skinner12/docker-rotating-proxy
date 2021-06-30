@@ -1,20 +1,299 @@
 version: "3.3"
 services:
-  squid:
-    ports:
-      - 3128:3128
-    image: b4tman/squid:latest
-    volumes:
-      - ./config/squid.conf:/etc/squid/squid.conf
-      - ./config/allowed_ip.txt:/etc/squid/allowed_ip.txt
-    container_name: dockersquid_rotate
-  hola1:
-    ports:
-      - 10021:8080
-    image: yarmak/hola-proxy:latest
-    command: "-country us -proxy-type peer"
-  socks1:
-    ports:
-      - 10022:10022
-    image: ginuerzh/gost:latest
-    command: "-L=:10022 -F=socks5://vpn:unlimited@159.89.206.161:2434"
+    squid:
+        ports:
+            - "3128:3128"
+        image: "b4tman/squid:latest"
+        volumes:
+            - "./config/squid.conf:/etc/squid/squid.conf"
+            - "./config/allowed_ip.txt:/etc/squid/allowed_ip.txt"
+        container_name: dockersquid_rotate
+    hola1:
+        ports:
+            - "10021:8080"
+        image: "yarmak/hola-proxy:latest"
+        command: "-country de -proxy-type peer"
+    hola1:
+        ports:
+            - "10022:8080"
+        image: "yarmak/hola-proxy:latest"
+        command: "-country nl -proxy-type peer"
+    vpn1:
+        ports:
+            - "49155:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_1
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-01.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn2:
+        ports:
+            - "49156:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_2
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-02.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn3:
+        ports:
+            - "49157:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_3
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-03.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn4:
+        ports:
+            - "49158:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_4
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-04.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn5:
+        ports:
+            - "49159:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_5
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-05.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn6:
+        ports:
+            - "49160:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_6
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-01.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn7:
+        ports:
+            - "49161:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_7
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-02.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn8:
+        ports:
+            - "49162:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_8
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-03.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn9:
+        ports:
+            - "49163:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_9
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-04.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn10:
+        ports:
+            - "49164:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_10
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/jp-free-01.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpnversion: "3.3"
+services:
+    squid:
+        ports:
+            - "3128:3128"
+        image: "b4tman/squid:latest"
+        volumes:
+            - "./config/squid.conf:/etc/squid/squid.conf"
+            - "./config/allowed_ip.txt:/etc/squid/allowed_ip.txt"
+        container_name: dockersquid_rotate
+    hola1:
+        ports:
+            - "10021:8080"
+        image: "yarmak/hola-proxy:latest"
+        command: "-country de -proxy-type peer"
+    hola1:
+        ports:
+            - "10022:8080"
+        image: "yarmak/hola-proxy:latest"
+        command: "-country nl -proxy-type peer"
+    vpn1:
+        ports:
+            - "49155:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_1
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-01.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn2:
+        ports:
+            - "49156:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_2
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-02.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn3:
+        ports:
+            - "49157:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_3
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-03.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn4:
+        ports:
+            - "49158:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_4
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-04.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn5:
+        ports:
+            - "49159:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_5
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/nl-free-05.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn6:
+        ports:
+            - "49160:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_6
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-01.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn7:
+        ports:
+            - "49161:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_7
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-02.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn8:
+        ports:
+            - "49162:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_8
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-03.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn9:
+        ports:
+            - "49163:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_9
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/us-free-04.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
+    vpn10:
+        ports:
+            - "49164:3128"
+        image: curve25519xsalsa20poly1305/openvpn
+        container_name: dockervpn_10
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - "./openvpn/jp-free-01.protonvpn.com.udp.ovpn:/vpn:ro"
+        environment:
+            - OPENVPN_CONFIG=/vpn/vpn.ovpn
