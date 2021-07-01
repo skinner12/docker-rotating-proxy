@@ -13,55 +13,55 @@ services:
       - 9021:8080
     image: yarmak/hola-proxy:latest
     command: "-country us -proxy-type peer"
-    container_name: dockershola_1
+    container_name: dockerhola_1
   hola2:
     ports:
       - 9022:8080
     image: yarmak/hola-proxy:latest
     command: "-country ch -proxy-type peer"
-    container_name: dockershola_2
+    container_name: dockerhola_2
   hola3:
     ports:
       - 9023:8080
     image: yarmak/hola-proxy:latest
     command: "-country it -proxy-type peer"
-    container_name: dockershola_3
+    container_name: dockerhola_3
   hola4:
     ports:
       - 9024:8080
     image: yarmak/hola-proxy:latest
     command: "-country nl -proxy-type peer"
-    container_name: dockershola_4
+    container_name: dockerhola_4
   hola5:
     ports:
       - 9025:8080
     image: yarmak/hola-proxy:latest
     command: "-country fr -proxy-type peer"
-    container_name: dockershola_5
+    container_name: dockerhola_5
   hola6:
     ports:
       - 9026:8080
     image: yarmak/hola-proxy:latest
     command: "-country fi -proxy-type peer"
-    container_name: dockershola_6
+    container_name: dockerhola_6
   hola7:
     ports:
       - 9027:8080
     image: yarmak/hola-proxy:latest
     command: "-country ro -proxy-type peer"
-    container_name: dockershola_7
+    container_name: dockerhola_7
   hola8:
     ports:
       - 9028:8080
     image: yarmak/hola-proxy:latest
     command: "-country uk -proxy-type peer"
-    container_name: dockershola_8
+    container_name: dockerhola_8
   hola9:
     ports:
       - 9029:8080
     image: yarmak/hola-proxy:latest
     command: "-country de -proxy-type peer"
-    container_name: dockershola_9
+    container_name: dockerhola_9
   socks1:
     ports:
       - 10022:10022
