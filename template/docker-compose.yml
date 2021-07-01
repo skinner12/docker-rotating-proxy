@@ -10,9 +10,49 @@ services:
     container_name: dockersquid_rotate
   hola1:
     ports:
-      - 10021:8080
+      - 9021:8080
     image: yarmak/hola-proxy:latest
     command: "-country us -proxy-type peer"
+  hola2:
+    ports:
+      - 9022:8080
+    image: yarmak/hola-proxy:latest
+    command: "-country ch -proxy-type peer"
+  hola3:
+    ports:
+      - 9023:8080
+    image: yarmak/hola-proxy:latest
+    command: "-country it -proxy-type peer"
+  hola3:
+    ports:
+      - 9023:8080
+    image: yarmak/hola-proxy:latest
+    command: "-country de -proxy-type peer"
+  hola4:
+      ports:
+        - 9024:8080
+      image: yarmak/hola-proxy:latest
+      command: "-country nl -proxy-type peer"
+  hola5:
+      ports:
+        - 9025:8080
+      image: yarmak/hola-proxy:latest
+      command: "-country fr -proxy-type peer"
+  hola6:
+      ports:
+        - 9026:8080
+      image: yarmak/hola-proxy:latest
+      command: "-country fi -proxy-type peer"
+  hola7:
+    ports:
+      - 9027:8080
+    image: yarmak/hola-proxy:latest
+    command: "-country ro -proxy-type peer"
+  hola8:
+    ports:
+      - 9027:8080
+    image: yarmak/hola-proxy:latest
+    command: "-country uk -proxy-type peer"
   socks1:
     ports:
       - 10022:10022
