@@ -12,69 +12,32 @@ services:
     ports:
       - 9021:8080
     image: yarmak/hola-proxy:latest
-    command: "-country us -proxy-type peer -proxy http://127.0.0.1:49152"
+    command: "-country us -proxy-type peer -proxy http://127.0.0.1:9024"
     container_name: dockerhola_1
   hola2:
     ports:
       - 9022:8080
     image: yarmak/hola-proxy:latest
-    command: "-country ch -proxy-type peer -proxy http://127.0.0.1:49153"
+    command: "-country ch -proxy-type peer -proxy http://127.0.0.1:9025"
     container_name: dockerhola_2
   hola3:
     ports:
       - 9023:8080
     image: yarmak/hola-proxy:latest
-    command: "-country it -proxy-type peer -proxy http://127.0.0.1:49154"
+    command: "-country it -proxy-type peer -proxy http://127.0.0.1:9024"
     container_name: dockerhola_3
   windscribe1:
     ports:
       - 9024:28080
     image: yarmak/windscribe-proxy:latest
-    command: "-location Germany/Frankfurt -proxy http://127.0.0.1:49152"
+    command: "-location Frace/Paris"
     container_name: windscribe_1
-  windscribe2:
-    ports:
-      - 9025:28080
-    image: yarmak/windscribe-proxy:latest
-    command: "-location Germany/Frankfurt -proxy http://127.0.0.1:49153"
-    container_name: windscribe_2
-  windscribe3:
-    ports:
-      - 9026:28080
-    image: yarmak/windscribe-proxy:latest
-    command: "-location Germany/Frankfurt -proxy http://127.0.0.1:49154"
-    container_name: windscribe_3
   operaproxy1:
     ports:
-      - 9027:18080
+      - 9025:18080
     image: yarmak/opera-proxy:latest
-    command: "-country EU -proxy http://127.0.0.1:49154"
+    command: "-country EU"
     container_name: operaproxy1
-  operaproxy2:
-    ports:
-      - 9028:18080
-    image: yarmak/opera-proxy:latest
-    command: "-country EU -proxy http://127.0.0.1:49155"
-    container_name: operaproxy2
-  operaproxy3:
-    ports:
-      - 9029:18080
-    image: yarmak/opera-proxy:latest
-    command: "-country EU -proxy http://127.0.0.1:49155"
-    container_name: operaproxy3
-  vpn11:
-    ports:
-      - "49152:3128"
-    image: curve25519xsalsa20poly1305/openvpn
-    container_name: dockervpn_11
-    devices:
-      - "/dev/net/tun:/dev/net/tun"
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - "./openvpn/available:/vpn:ro"
-    environment:
-      - OPENVPN_CONFIG=/vpn/vpn.ovpn
   vpn12:
     ports:
       - "49153:3128"
