@@ -30,7 +30,7 @@ services:
     ports:
       - 9024:28080
     image: yarmak/windscribe-proxy:latest
-    command: "-location Frace/Paris"
+    command: "-location France/Paris"
     container_name: windscribe_1
   operaproxy1:
     ports:
